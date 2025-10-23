@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collage Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .gallery {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #01b3ff, #01f7ff, #00d5ff);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .gallery::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(138, 43, 226, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+            animation: float 20s ease-in-out infinite;
+        }
+
+       .gallery::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
+            pointer-events: none;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .gallery-section {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 60px;
+            color: white;
+        }
+
+        .gallery-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .gallery-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .collage-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        /* Collage layout variations */
+        .gallery-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item:nth-child(2) {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .gallery-item:nth-child(3) {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .gallery-item:nth-child(4) {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .gallery-item:nth-child(5) {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        .gallery-item:nth-child(6) {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .gallery-item:nth-child(7) {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .gallery-item:nth-child(8) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item:nth-child(9) {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay-text {
+            color: white;
+        }
+
+        .overlay-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .overlay-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Placeholder styling */
+        .placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 1200px) {
+            .collage-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .collage-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 150px;
+            }
+
+            .gallery-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .gallery-item:nth-child(n) {
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .collage-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-section">
+        <div class="gallery-header">
+            <h1>Gallery Collage</h1>
+            <p>Explore our stunning collection</p>
+        </div>
+
+        <div class="collage-container">
+            <div class="gallery-item">
+                <div class="placeholder">🏔</div>
+                <div class="overlay">
+                    <div class="overlay-text">
+                        <h3>Mountain View</h3>
+                        <p>Breathtaking landscape</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="placeholder">🌊</div>
+                <div class="overlay">
+                    <div class="overlay-text">
+                        <h3>Ocean Waves</h3>
+                        <p>Peaceful seascape</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="placeholder">🌆</div>
+                <div class="overlay">
+                    <div class="overlay-text">
+                        <h3>City Lights</h3>
+                        <p>Urban nightscape</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="placeholder">🌸</div>
+                <div class="overlay">
+                    <div class="overlay-text">
+                        <h3>Spring Blooms</h3>
+                        <p>Nature's beauty</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="placeholder">🌲</div>
+                <div class="overlay">
+                    <div class="overlay-text">
+                        <h3>Forest Path</h3>
+                        <p>Into the woods</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="placeholder">🌅</div>
+                <div class="overlay">
+                    <div class="overlay-text">
+                        <h3>Sunrise</h3>
+                        <p>Dawn's first light</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="placeholder">🏖</div>
+                <div class="overlay">
+                    <div class="overlay-text">
+                        <h3>Beach Paradise</h3>
+                        <p>Tropical escape</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="placeholder">🌌</div>
+                <div class="overlay">
+                    <div class="overlay-text">
+                        <h3>Starry Night</h3>
+                        <p>Cosmic wonder</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="placeholder">🎨</div>
+                <div class="overlay">
+                    <div class="overlay-text">
+                        <h3>Art Gallery</h3>
+                        <p>Creative expression</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+              <div class="placeholder">🌊</div>
+              <div class="overlay">
+                  <div class="overlay-text">
+                      <h3>Ocean Waves</h3>
+                      <p>Peaceful seascape</p>
+                  </div>
+              </div>
+          </div>
+           <div class="gallery-item">
+                <div class="placeholder">🌊</div>
+                <div class="overlay">
+                    <div class="overlay-text">
+                        <h3>Ocean Waves</h3>
+                        <p>Peaceful seascape</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
