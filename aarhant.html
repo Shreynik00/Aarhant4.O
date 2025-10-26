@@ -14,11 +14,6 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: #000000;
-            /* 🔹 ADD YOUR BACKGROUND IMAGE HERE - LINE 20 */
-             background-image: url('Images/aarhant.png'); 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
             color: #fff;
             overflow-x: hidden;
             cursor: none;
@@ -106,13 +101,9 @@
         .logo-svg {
             width: 50px;
             height: 50px;
-            /* 🔹 REPLACE THE SVG BELOW WITH YOUR LOGO IMAGE - LINE 182-192 */
-            /* Example: */
-            /* background-logo: url('Images/logo.png'); */
-            /* background-size: contain; */
-            /* background-repeat: no-repeat; */
             filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.6));
             animation: float 3s ease-in-out infinite;
+            object-fit: contain;
         }
 
         @keyframes float {
@@ -271,7 +262,7 @@
 
         .section-number {
             font-size: 1rem;
-            color: #4a9eff;
+            color: #00FFFF;
             letter-spacing: 3px;
             margin-bottom: 20px;
             font-weight: 600;
@@ -281,7 +272,7 @@
             font-size: clamp(2.5rem, 5vw, 5rem);
             font-weight: 800;
             margin-bottom: 30px;
-            background: linear-gradient(135deg, #fff, #4a9eff);
+            background: linear-gradient(135deg, #fff, #00FFFF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
@@ -306,7 +297,7 @@
 
         .card-3d {
             background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(74, 158, 255, 0.2);
+            border: 1px solid rgba(0, 255, 255, 0.2);
             border-radius: 20px;
             padding: 50px 40px;
             position: relative;
@@ -330,7 +321,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(74, 158, 255, 0.15), transparent 50%);
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 255, 255, 0.15), transparent 50%);
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -341,15 +332,15 @@
 
         .card-3d:hover {
             transform: translateY(-20px) scale(1.02);
-            border-color: #4a9eff;
-            box-shadow: 0 30px 60px rgba(74, 158, 255, 0.3);
+            border-color: #00FFFF;
+            box-shadow: 0 30px 60px rgba(0, 255, 255, 0.3), 0 0 20px rgba(0, 255, 255, 0.2);
         }
 
         .card-icon {
             font-size: 4rem;
             margin-bottom: 30px;
             display: inline-block;
-            filter: drop-shadow(0 0 20px rgba(74, 158, 255, 0.5));
+            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.5));
             animation: iconFloat 3s ease-in-out infinite;
         }
 
@@ -396,7 +387,7 @@
 
         .floating-shape {
             position: absolute;
-            border: 2px solid rgba(74, 158, 255, 0.3);
+            border: 2px solid rgba(0, 255, 255, 0.3);
             border-radius: 20px;
             backdrop-filter: blur(10px);
             background: rgba(15, 23, 42, 0.4);
@@ -463,8 +454,8 @@
 
         .feature-large {
             grid-column: span 2;
-            background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), rgba(0, 212, 255, 0.05));
-            border: 1px solid rgba(74, 158, 255, 0.3);
+            background: linear-gradient(135deg, rgba(136, 0, 255, 0.1), rgba(0, 255, 255, 0.05));
+            border: 1px solid rgba(0, 255, 255, 0.3);
             border-radius: 30px;
             padding: 80px 60px;
             position: relative;
@@ -486,7 +477,7 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(74, 158, 255, 0.1), transparent 50%);
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.1), transparent 50%);
             animation: rotate 20s linear infinite;
         }
 
@@ -503,11 +494,11 @@
         .feature-tag {
             display: inline-block;
             padding: 8px 20px;
-            background: rgba(74, 158, 255, 0.2);
-            border: 1px solid #4a9eff;
+            background: rgba(0, 255, 255, 0.2);
+            border: 1px solid #00FFFF;
             border-radius: 20px;
             font-size: 0.9rem;
-            color: #4a9eff;
+            color: #00FFFF;
             margin-bottom: 30px;
             letter-spacing: 1px;
         }
@@ -530,8 +521,8 @@
         footer {
             padding: 80px 50px;
             text-align: center;
-            border-top: 1px solid rgba(74, 158, 255, 0.1);
-            background: rgba(2, 8, 23, 0.8);
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
         }
 
@@ -542,7 +533,7 @@
         }
 
         .footer-highlight {
-            color: #4a9eff;
+            color: #00FFFF;
             font-weight: 600;
         }
 
@@ -645,19 +636,8 @@
     <div class="content-wrapper">
         <header>
             <div class="logo-container">
-                <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <path d="M50 10 L15 25 L15 50 Q15 75 50 90 Q85 75 85 50 L85 25 Z" 
-                          fill="none" stroke="url(#grad)" stroke-width="2.5"/>
-                    <circle cx="50" cy="45" r="10" fill="#020817"/>
-                    <path d="M45 45 L48 48 L55 40" stroke="#4a9eff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                    <path d="M35 62 L50 72 L65 62" fill="#020817" stroke="url(#grad)" stroke-width="1.5"/>
-                </svg>
+                <!-- 🔹 REPLACE 'logo.png' WITH YOUR ACTUAL LOGO FILE PATH -->
+                <img src="Images/logo.png" alt="Aarhant Logo" class="logo-svg">
                 <div class="brand">AARHANT '25</div>
             </div>
         </header>
@@ -746,7 +726,11 @@
             </div>
         </section>
 
-       
+        <footer>
+            <p class="footer-text">
+                © 2025 <span class="footer-highlight">AARHANT</span> — Securing the Digital Future, One Mind at a Time
+            </p>
+        </footer>
     </div>
 
     <script>
@@ -785,7 +769,7 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(74, 158, 255, ${this.alpha})`;
+                ctx.fillStyle = `rgba(0, 255, 255, ${this.alpha})`;
                 ctx.fill();
             }
         }
@@ -811,7 +795,7 @@
 
                     if (distance < 150) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(74, 158, 255, ${0.1 * (1 - distance / 150)})`;
+                        ctx.strokeStyle = `rgba(0, 255, 255, ${0.1 * (1 - distance / 150)})`;
                         ctx.lineWidth = 0.5;
                         ctx.moveTo(p1.x, p1.y);
                         ctx.lineTo(p2.x, p2.y);
