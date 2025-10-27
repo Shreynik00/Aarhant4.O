@@ -121,15 +121,25 @@
         }
 
         .brand {
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: 3px;
-            background: linear-gradient(135deg, #fff, #00FFFF, #8800ff, #fff);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientShift 4s ease infinite;
-        }
+  display: flex;
+  align-items: center;
+  gap: 10px;              /* space between logo and text */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);  /* translucent background */
+  padding: 8px 16px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); /* neon glow style */
+}
+
+.brand img {
+  height: 40px;           /* logo size */
+  width: auto;
+  border-radius: 8px;     /* optional: soft corners */
+}
+
 
         @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
@@ -658,7 +668,11 @@
                     <path d="M45 45 L48 48 L55 40" stroke="#4a9eff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
                     <path d="M35 62 L50 72 L65 62" fill="#020817" stroke="url(#grad)" stroke-width="1.5"/>
                 </svg>
-                <div class="brand">AARHANT '25</div>
+                <div class="brand">
+                    <img src="arrhantlogo.png" alt="Aarhant Logo">
+                  
+                  </div>
+                  
             </div>
         </header>
 
